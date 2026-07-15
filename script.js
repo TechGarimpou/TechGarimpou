@@ -1,76 +1,60 @@
 const produtos=[
-
 {
-
-nome:"Fone Lenovo GM2 Pro",
-
-preco:69.90,
-
-categoria:"Fones",
-
-imagem:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=700",
-
-link:"#"
-
-},
-
-{
-
 nome:"Galaxy S24",
-
 preco:3199.90,
-
 categoria:"Celulares",
-
-imagem:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=700",
-
+imagem:"https://picsum.photos/500/500?1",
 link:"#"
-
 },
-
 {
-
-nome:"Notebook Gamer",
-
-preco:4599.90,
-
-categoria:"Notebook",
-
-imagem:"https://images.unsplash.com/photo-1517336714739-489689fd1ca8?w=700",
-
+nome:"Lenovo GM2 Pro",
+preco:69.90,
+categoria:"Fones",
+imagem:"https://picsum.photos/500/500?2",
 link:"#"
-
+},
+{
+nome:"Notebook Gamer",
+preco:4599.90,
+categoria:"Notebook",
+imagem:"https://picsum.photos/500/500?3",
+link:"#"
+},
+{
+nome:"Mouse Gamer RGB",
+preco:129.90,
+categoria:"Gamer",
+imagem:"https://picsum.photos/500/500?4",
+link:"#"
 }
-
 ];
 
 const area=document.querySelector(".produtos");
-
 const pesquisa=document.getElementById("pesquisa");
 
-function mostrar(lista){
+function criar(lista){
 
 area.innerHTML="";
 
-lista.forEach(produto=>{
+lista.forEach(p=>{
 
 area.innerHTML+=`
 
 <div class="card">
 
-<img src="${produto.imagem}">
+<img src="${p.imagem}">
 
-<h3>${produto.nome}</h3>
+<h3>${p.nome}</h3>
 
 <p class="preco">
 
-R$ ${produto.preco.toFixed(2).replace(".",",")}
+R$ ${p.preco.toFixed(2).replace(".",",")}
 
 </p>
 
-<a href="${produto.link}" target="_blank">
+<a href="${p.link}" target="_blank">
 
-🛒 Comprar Agora
+🛒 Comprar
 
 </a>
 
@@ -82,18 +66,30 @@ R$ ${produto.preco.toFixed(2).replace(".",",")}
 
 }
 
-mostrar(produtos);
+criar(produtos);
 
-pesquisa.addEventListener("keyup",()=>{
+pesquisa.onkeyup=()=>{
 
-const texto=pesquisa.value.toLowerCase();
+const valor=pesquisa.value.toLowerCase();
 
-const filtro=produtos.filter(produto=>
+criar(produtos.filter(p=>p.nome.toLowerCase().includes(valor)));
 
-produto.nome.toLowerCase().includes(texto)
+}
 
-);
+document.querySelectorAll(".categorias button").forEach(btn=>{
 
-mostrar(filtro);
+btn.onclick=()=>{
+
+if(btn.textContent=="Todos"){
+
+criar(produtos);
+
+return;
+
+}
+
+criar(produtos.filter(p=>p.categoria==btn.textContent));
+
+}
 
 });
