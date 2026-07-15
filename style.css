@@ -313,3 +313,107 @@ transform:scale(1.05);
 transition:.3s;
 
 }
+:root{
+--bg:#090909;
+--card:#161616;
+--red:#ff2b2b;
+--text:#fff;
+--gray:#bdbdbd;
+}
+
+body{
+background:linear-gradient(180deg,#080808,#121212,#080808);
+}
+
+.hero{
+padding:90px 25px;
+text-align:center;
+background:
+radial-gradient(circle at top,#ff2b2b25,transparent 60%);
+}
+
+.hero h1{
+font-size:48px;
+font-weight:800;
+line-height:1.1;
+max-width:800px;
+margin:auto;
+}
+
+.hero p{
+margin-top:20px;
+font-size:20px;
+color:var(--gray);
+}
+
+.hero button{
+margin-top:35px;
+padding:18px 45px;
+border:none;
+background:var(--red);
+border-radius:50px;
+font-size:18px;
+font-weight:700;
+color:white;
+box-shadow:0 0 30px rgba(255,43,43,.45);
+transition:.3s;
+}
+
+.hero button:hover{
+transform:translateY(-5px);
+}
+
+.produtos{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+padding:50px;
+}
+
+.card{
+background:rgba(255,255,255,.04);
+backdrop-filter:blur(12px);
+border:1px solid rgba(255,255,255,.08);
+border-radius:25px;
+overflow:hidden;
+transition:.35s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+border-color:#ff2b2b;
+}
+
+.card img{
+height:260px;
+width:100%;
+object-fit:cover;
+}
+
+.card h3{
+padding:20px;
+font-size:23px;
+}
+
+.preco{
+padding:0 20px;
+font-size:30px;
+font-weight:800;
+color:#32ff88;
+}
+
+.card a{
+display:block;
+margin:20px;
+padding:18px;
+background:#ff2b2b;
+color:white;
+text-decoration:none;
+border-radius:15px;
+font-weight:700;
+text-align:center;
+}
+
+.card a:hover{
+background:#ff4d4d;
+}
