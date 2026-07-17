@@ -70,7 +70,6 @@ link:"#"
 const area=document.getElementById("produtos");
 const pesquisa=document.getElementById("pesquisa");
 
-let favoritos=JSON.parse(localStorage.getItem("favoritos"))||[];
 
 function desconto(a,b){
 return Math.round(100-(a/b*100));
