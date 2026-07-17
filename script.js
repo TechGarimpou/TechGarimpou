@@ -1,82 +1,106 @@
 const produtos = [
-
 {
+id:1,
 nome:"Lenovo GM2 Pro",
+categoria:"Fones",
 preco:69.90,
 precoAntigo:129.90,
-categoria:"Fones",
-nota:"4.9",
+nota:4.9,
 frete:true,
-imagem:"https://picsum.photos/500?1",
+imagem:"https://picsum.photos/600?1",
 link:"#"
 },
-
 {
+id:2,
 nome:"Galaxy S24",
-preco:3199,
-precoAntigo:3999,
 categoria:"Celulares",
-nota:"4.8",
+preco:3199.90,
+precoAntigo:3999.90,
+nota:4.8,
 frete:true,
-imagem:"https://picsum.photos/500?2",
+imagem:"https://picsum.photos/600?2",
 link:"#"
 },
-
 {
-nome:"Mouse Logitech G502",
-preco:189,
-precoAntigo:259,
-categoria:"Gamer",
-nota:"4.9",
-frete:false,
-imagem:"https://picsum.photos/500?3",
-link:"#"
-},
-
-{
+id:3,
 nome:"Apple Watch",
-preco:2299,
-precoAntigo:2799,
 categoria:"Smartwatch",
-nota:"4.8",
+preco:2299.90,
+precoAntigo:2799.90,
+nota:4.9,
 frete:true,
-imagem:"https://picsum.photos/500?4",
+imagem:"https://picsum.photos/600?3",
 link:"#"
 },
-
 {
-nome:"Notebook Gamer Acer",
-preco:4599,
-precoAntigo:5399,
+id:4,
+nome:"Notebook Acer Nitro",
 categoria:"Notebook",
-nota:"4.9",
+preco:4599.90,
+precoAntigo:5399.90,
+nota:4.8,
+frete:false,
+imagem:"https://picsum.photos/600?4",
+link:"#"
+},
+{
+id:5,
+nome:"Mouse Logitech G502",
+categoria:"Gamer",
+preco:189.90,
+precoAntigo:259.90,
+nota:4.9,
 frete:true,
-imagem:"https://picsum.photos/500?5",
+imagem:"https://picsum.photos/600?5",
+link:"#"
+},
+{
+id:6,
+nome:"Monitor LG 27",
+categoria:"Monitor",
+preco:999.90,
+precoAntigo:1299.90,
+nota:4.7,
+frete:true,
+imagem:"https://picsum.photos/600?6",
 link:"#"
 }
-
 ];
 
-const area=document.querySelector(".produtos");
+const area=document.getElementById("produtos");
 const pesquisa=document.getElementById("pesquisa");
 
-function criar(lista){
+let favoritos=JSON.parse(localStorage.getItem("favoritos"))||[];
+
+function desconto(a,b){
+return Math.round(100-(a/b*100));
+}
+
+function desenhar(lista){
 
 area.innerHTML="";
 
 lista.forEach(produto=>{
 
-const desconto=Math.round(
-100-(produto.preco/produto.precoAntigo*100)
-);
+const fav=favoritos.includes(produto.id);
 
 area.innerHTML+=`
 
 <div class="card">
 
-<span class="desconto">
--${desconto}%
-</span>
+<div class="desconto">
+
+-${desconto(produto.preco,produto.precoAntigo)}%
+
+</div>
+
+<div
+class="favorito"
+onclick="favoritar(${produto.id})">
+
+${fav?"❤️":"🤍"}
+
+</div>
 
 <img src="${produto.imagem}">
 
@@ -110,7 +134,7 @@ produto.frete
 
 <a href="${produto.link}" target="_blank">
 
-🛒 Comprar Agora
+Comprar Agora
 
 </a>
 
@@ -122,44 +146,66 @@ produto.frete
 
 }
 
-criar(produtos);
+desenhar(produtos);
+
+function favoritar(id){
+
+if(favoritos.includes(id)){
+
+favoritos=favoritos.filter(x=>x!=id);
+
+}else{
+
+favoritos.push(id);
+
+}
+
+localStorage.setItem("favoritos",JSON.stringify(favoritos));
+
+desenhar(produtos);
+
+}
 
 pesquisa.addEventListener("keyup",()=>{
 
 const texto=pesquisa.value.toLowerCase();
 
-criar(
+const lista=produtos.filter(produto=>{
 
-produtos.filter(p=>
-
-p.nome.toLowerCase().includes(texto)
-
-)
-
-);
+return produto.nome.toLowerCase().includes(texto);
 
 });
 
-document.querySelectorAll(".categorias button").forEach(btn=>{
+desenhar(lista);
 
-btn.onclick=()=>{
+});
 
-const cat=btn.textContent;
+document.querySelectorAll(".categorias button").forEach(botao=>{
 
-if(cat==="Todos"){
+botao.onclick=()=>{
 
-criar(produtos);
+const categoria=botao.textContent;
+
+if(categoria==="Todos"){
+
+desenhar(produtos);
 
 return;
 
 }
 
-criar(
+const lista=produtos.filter(produto=>{
 
-produtos.filter(p=>p.categoria===cat)
+return produto.categoria===categoria;
 
-);
+});
+
+desenhar(lista);
 
 };
 
+});
+
+window.scroll({
+top:0
 });
