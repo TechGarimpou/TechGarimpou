@@ -94,10 +94,7 @@ area.innerHTML+=`
 </div>
 
 <div
-class="favorito"
-onclick="favoritar(${produto.id})">
 
-${fav?"❤️":"🤍"}
 
 </div>
 
@@ -147,19 +144,7 @@ Comprar Agora
 
 desenhar(produtos);
 
-function favoritar(id){
 
-if(favoritos.includes(id)){
-
-favoritos=favoritos.filter(x=>x!=id);
-
-}else{
-
-favoritos.push(id);
-
-}
-
-localStorage.setItem("favoritos",JSON.stringify(favoritos));
 
 desenhar(produtos);
 
