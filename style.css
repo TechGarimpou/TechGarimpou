@@ -417,3 +417,202 @@ text-align:center;
 .card a:hover{
 background:#ff4d4d;
 }
+/* ===== PREMIUM ===== */
+
+header{
+backdrop-filter:blur(15px);
+background:rgba(15,15,15,.75);
+box-shadow:0 10px 35px rgba(0,0,0,.35);
+}
+
+.hero{
+
+min-height:75vh;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+background:
+radial-gradient(circle at top,#ff2b2b30,transparent 40%),
+radial-gradient(circle at bottom,#ff2b2b15,transparent 50%);
+
+animation:fundo 8s infinite alternate;
+
+}
+
+@keyframes fundo{
+
+0%{
+
+background-position:left top;
+
+}
+
+100%{
+
+background-position:right bottom;
+
+}
+
+}
+
+.hero h1{
+
+background:linear-gradient(90deg,#ffffff,#ff4040);
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+font-size:60px;
+
+font-weight:800;
+
+}
+
+.hero p{
+
+font-size:22px;
+
+margin-top:20px;
+
+max-width:650px;
+
+text-align:center;
+
+}
+
+.hero button{
+
+transition:.35s;
+
+}
+
+.hero button:hover{
+
+transform:translateY(-6px) scale(1.08);
+
+box-shadow:0 15px 35px rgba(255,0,0,.5);
+
+}
+
+.card{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.card::before{
+
+content:"🔥 OFERTA";
+
+position:absolute;
+
+top:18px;
+
+left:-40px;
+
+background:#ff2b2b;
+
+padding:8px 45px;
+
+font-size:12px;
+
+font-weight:bold;
+
+transform:rotate(-35deg);
+
+}
+
+.card img{
+
+transition:.5s;
+
+}
+
+.card:hover img{
+
+transform:scale(1.08);
+
+}
+
+.card::after{
+
+content:"❤️";
+
+position:absolute;
+
+right:18px;
+
+top:18px;
+
+width:42px;
+
+height:42px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+background:white;
+
+border-radius:50%;
+
+font-size:20px;
+
+}
+
+.preco{
+
+color:#00ff88;
+
+}
+
+.card a{
+
+font-size:17px;
+
+}
+
+footer{
+
+border-top:1px solid rgba(255,255,255,.1);
+
+}
+
+footer p{
+
+letter-spacing:1px;
+
+}
+
+@media(max-width:700px){
+
+.hero h1{
+
+font-size:42px;
+
+}
+
+.hero{
+
+padding:50px 20px;
+
+}
+
+.card{
+
+border-radius:18px;
+
+}
+
+}
