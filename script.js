@@ -1,95 +1,51 @@
 const produtos=[
-{
-nome:"Galaxy S24",
-preco:3199.90,
-categoria:"Celulares",
-imagem:"https://picsum.photos/500/500?1",
-link:"#"
-},
+
 {
 nome:"Lenovo GM2 Pro",
 preco:69.90,
 categoria:"Fones",
-imagem:"https://picsum.photos/500/500?2",
+imagem:"https://m.media-amazon.com/images/I/61Q8h6T0pJL._AC_SL1500_.jpg",
 link:"#"
 },
+
 {
-nome:"Notebook Gamer",
+nome:"Galaxy S24",
+preco:3199.90,
+categoria:"Celulares",
+imagem:"https://m.media-amazon.com/images/I/71lD7eGdW-L._AC_SL1500_.jpg",
+link:"#"
+},
+
+{
+nome:"Acer Nitro V15",
 preco:4599.90,
 categoria:"Notebook",
-imagem:"https://picsum.photos/500/500?3",
+imagem:"https://m.media-amazon.com/images/I/71g4s4P9qKL._AC_SL1500_.jpg",
 link:"#"
 },
+
 {
-nome:"Mouse Gamer RGB",
-preco:129.90,
+nome:"Mouse Logitech G502",
+preco:189.90,
 categoria:"Gamer",
-imagem:"https://picsum.photos/500/500?4",
+imagem:"https://m.media-amazon.com/images/I/61mpMH5TzkL._AC_SL1500_.jpg",
+link:"#"
+},
+
+{
+nome:"Apple Watch",
+preco:2299.90,
+categoria:"Smartwatch",
+imagem:"https://m.media-amazon.com/images/I/71Swqqe7XAL._AC_SL1500_.jpg",
+link:"#"
+},
+
+{
+nome:"Monitor LG 27''",
+preco:999.90,
+categoria:"Monitor",
+imagem:"https://m.media-amazon.com/images/I/71QKQ9mwV7L._AC_SL1500_.jpg",
 link:"#"
 }
+
 ];
-
-const area=document.querySelector(".produtos");
-const pesquisa=document.getElementById("pesquisa");
-
-function criar(lista){
-
-area.innerHTML="";
-
-lista.forEach(p=>{
-
-area.innerHTML+=`
-
-<div class="card">
-
-<img src="${p.imagem}">
-
-<h3>${p.nome}</h3>
-
-<p class="preco">
-
-R$ ${p.preco.toFixed(2).replace(".",",")}
-
-</p>
-
-<a href="${p.link}" target="_blank">
-
-🛒 Comprar
-
-</a>
-
-</div>
-
-`;
-
-});
-
-}
-
-criar(produtos);
-
-pesquisa.onkeyup=()=>{
-
-const valor=pesquisa.value.toLowerCase();
-
-criar(produtos.filter(p=>p.nome.toLowerCase().includes(valor)));
-
-}
-
-document.querySelectorAll(".categorias button").forEach(btn=>{
-
-btn.onclick=()=>{
-
-if(btn.textContent=="Todos"){
-
-criar(produtos);
-
-return;
-
-}
-
-criar(produtos.filter(p=>p.categoria==btn.textContent));
-
-}
-
-});
